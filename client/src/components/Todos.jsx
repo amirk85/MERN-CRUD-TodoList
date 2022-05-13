@@ -18,7 +18,7 @@ export default function Todos() {
 
   useEffect(() => {
     getAllTodos();
-  }, []);
+  }, [editId]);
 
   useEffect(() => {
     document.getElementById("todo_input").focus();
@@ -27,8 +27,19 @@ export default function Todos() {
   return (
     <div>
       <h1>MERN Todo List</h1>
-      <TodoForm input={input} setInput={setInput} onAddTodo={setTodos} />
-      <TodoList todos={todos} getAllTodos={getAllTodos} />
+      <TodoForm
+        input={input}
+        setInput={setInput}
+        onAddTodo={setTodos}
+        editId={editId}
+        setEditId={setEditId}
+      />
+      <TodoList
+        todos={todos}
+        getAllTodos={getAllTodos}
+        setInput={setInput}
+        setEditId={setEditId}
+      />
     </div>
   );
 }

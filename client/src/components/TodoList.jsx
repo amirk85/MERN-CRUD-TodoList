@@ -5,7 +5,7 @@ import { BASE_URL } from "../api/api";
 import TodoItem from "./TodoItem";
 
 export default function TodoList(props) {
-  const { todos, getAllTodos } = props;
+  const { todos, getAllTodos, setInput, setEditId } = props;
 
   async function deleteTodoHandler(id) {
     try {
@@ -16,8 +16,19 @@ export default function TodoList(props) {
     }
   }
 
+  function editTodoHandler(id, task) {
+    setInput(task);
+    setEditId(id);
+    document.getElementById("todo_input").focus();
+  }
+
   const renderList = todos.map((todo) => (
-    <TodoItem key={uuidv4()} todo={todo} onDeleteTodo={deleteTodoHandler} />
+    <TodoItem
+      key={uuidv4()}
+      todo={todo}
+      onDeleteTodo={deleteTodoHandler}
+      onEditTodo={editTodoHandler}
+    />
   ));
 
   return <div>{renderList}</div>;

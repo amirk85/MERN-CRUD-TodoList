@@ -10,17 +10,17 @@ exports.getAllTodos = async (req, res) => {
 };
 
 exports.createTodo = async (req, res) => {
-  try {
-    const existedTodo = await Todos.findOne({ task: req.body.task });
-    if (existedTodo) {
-      res.send("Already added!");
-    } else {
+  const existedTodo = await Todos.findOne({ task: req.body.task });
+  if (existedTodo) {
+    res.status(404).json("Already added!");
+  } else {
+    try {
       const newTodo = new Todos(req.body);
       await newTodo.save();
       res.status(201).json(newTodo);
+    } catch (error) {
+      res.status(404).send(error);
     }
-  } catch (error) {
-    res.status(404).json(error);
   }
 };
 
@@ -32,7 +32,7 @@ exports.updateTodo = async (req, res) => {
     });
     res.status(203).json("updated!");
   } catch (error) {
-    res.status(404).json(error);
+    res.status(404).json({ message: "Already Added" });
   }
 };
 
