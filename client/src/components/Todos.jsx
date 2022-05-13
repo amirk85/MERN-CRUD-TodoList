@@ -3,6 +3,7 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import axios from "axios";
 import { BASE_URL } from "../api/api";
+import { Paper, Typography } from "@mui/material";
 
 const DUMMY = [{ id: 1, task: "learn MERN", completed: false }];
 
@@ -25,8 +26,15 @@ export default function Todos() {
   }, []);
 
   return (
-    <div>
-      <h1>MERN Todo List</h1>
+    <Paper sx={{ marginTop: "1rem" }} style={{ width: "40%" }}>
+      <Typography
+        variant="h4"
+        textAlign={"center"}
+        marginTop={"2rem"}
+        color="#66757F"
+      >
+        MERN Todo List
+      </Typography>
       <TodoForm
         input={input}
         setInput={setInput}
@@ -40,6 +48,6 @@ export default function Todos() {
         setInput={setInput}
         setEditId={setEditId}
       />
-    </div>
+    </Paper>
   );
 }

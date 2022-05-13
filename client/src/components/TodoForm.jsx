@@ -1,11 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { BASE_URL } from "../api/api";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 export default function TodoForm(props) {
   const { input, setInput, onAddTodo, editId, setEditId } = props;
 
   const btnName = editId ? "update" : "add";
+  const btnColor = btnName === "update" ? "primary" : "secondary";
 
   async function submitHandler(e) {
     e.preventDefault();
@@ -37,18 +40,26 @@ export default function TodoForm(props) {
 
   return (
     <form
-      style={{ display: "flex", justifyContent: "space-between" }}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        margin: "2rem",
+      }}
       onSubmit={submitHandler}
     >
-      <input
+      <TextField
         type="text"
         id="todo_input"
         autoComplete="off"
         placeholder="add a task..."
+        variant="standard"
+        sx={{ width: "70%" }}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">{btnName}</button>
+      <Button variant="contained" color={btnColor} type="submit">
+        {btnName}
+      </Button>
     </form>
   );
 }

@@ -11,6 +11,7 @@ export default function TodoList(props) {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
       getAllTodos();
+      document.getElementById("todo_input").focus();
     } catch (error) {
       console.log(error.message);
     }
@@ -22,14 +23,17 @@ export default function TodoList(props) {
     document.getElementById("todo_input").focus();
   }
 
-  const renderList = todos.map((todo) => (
-    <TodoItem
-      key={uuidv4()}
-      todo={todo}
-      onDeleteTodo={deleteTodoHandler}
-      onEditTodo={editTodoHandler}
-    />
-  ));
+  const renderList =
+    todos &&
+    todos.map((todo, index) => (
+      <TodoItem
+        key={uuidv4()}
+        index={index}
+        todo={todo}
+        onDeleteTodo={deleteTodoHandler}
+        onEditTodo={editTodoHandler}
+      />
+    ));
 
   return <div>{renderList}</div>;
 }
