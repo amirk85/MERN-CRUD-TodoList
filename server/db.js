@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const DB = "mongodb://127.0.0.1:27017/todolist";
-
-mongoose.connect(DB);
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("connected to the DATABASE");
-});
+mongoose
+  .connect("mongodb://localhost/todolist", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => console.log("DB running"))
+  .catch((err) => console.log(err));
