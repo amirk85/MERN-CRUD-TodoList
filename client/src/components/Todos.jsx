@@ -19,7 +19,7 @@ export default function Todos() {
 
   useEffect(() => {
     getAllTodos();
-  }, [editId]);
+  }, []);
 
   useEffect(() => {
     document.getElementById("todo_input").focus();

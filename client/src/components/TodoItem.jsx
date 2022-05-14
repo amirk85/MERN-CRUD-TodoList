@@ -27,7 +27,7 @@ export default function TodoItem(props) {
         <Button
           variant="outlined"
           style={{ border: "none" }}
-          onClick={() => onEditTodo(_id, task)}
+          onClick={() => onEditTodo({ task, _id, completed })}
         >
           <ModeEditIcon />
         </Button>
