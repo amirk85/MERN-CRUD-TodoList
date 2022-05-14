@@ -12,7 +12,7 @@ export default function TodoItem(props) {
 
   return (
     <ListItem
-      button
+      // button
       divider
       style={{
         display: "flex",
@@ -27,7 +27,7 @@ export default function TodoItem(props) {
         <Button
           variant="outlined"
           style={{ border: "none" }}
-          onClick={() => onEditTodo({ task, _id, completed })}
+          onClick={() => onEditTodo(_id, task)}
         >
           <ModeEditIcon />
         </Button>

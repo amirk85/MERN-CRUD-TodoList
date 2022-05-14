@@ -17,9 +17,9 @@ export default function TodoList(props) {
     }
   }
 
-  function editTodoHandler(todo) {
-    setInput(todo.task);
-    setEditId(todo.id);
+  function editTodoHandler(id, task) {
+    setEditId(id);
+    setInput(task);
     document.getElementById("todo_input").focus();
   }
 

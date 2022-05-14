@@ -24,6 +24,7 @@ export default function TodoForm(props) {
         const { response } = error;
         alert(response.data);
         setInput("");
+        setEditId(null);
       }
     } else {
       try {
@@ -34,6 +35,7 @@ export default function TodoForm(props) {
         const { response } = error;
         alert(response.data.message);
         setInput("");
+        setEditId(null);
       }
     }
   }
