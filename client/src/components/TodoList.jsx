@@ -1,6 +1,6 @@
+import axios from "axios";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import todoAPI from "../api/api";
 import TodoItem from "./TodoItem";
 
 export default function TodoList(props) {
@@ -8,7 +8,7 @@ export default function TodoList(props) {
 
   async function deleteTodoHandler(id) {
     try {
-      await todoAPI.delete(`/${id}`);
+      await axios.delete(`todos/${id}`);
       getAllTodos();
       document.getElementById("todo_input").focus();
     } catch (error) {
