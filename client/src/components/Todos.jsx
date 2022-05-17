@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-import axios from "axios";
-import { BASE_URL } from "../api/api";
+import todoAPI from "../api/api";
 import { Paper, Typography } from "@mui/material";
 
 const DUMMY = [{ id: 1, task: "learn MERN", completed: false }];
@@ -13,7 +12,7 @@ export default function Todos() {
   const [editId, setEditId] = useState(null);
 
   async function getAllTodos() {
-    const { data } = await axios.get(BASE_URL);
+    const { data } = await todoAPI.get("/");
     setTodos(data);
   }
 

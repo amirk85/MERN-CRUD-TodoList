@@ -1,6 +1,5 @@
-import axios from "axios";
 import React from "react";
-import { BASE_URL } from "../api/api";
+import todoAPI from "../api/api";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
@@ -17,7 +16,7 @@ export default function TodoForm(props) {
     if (!editId) {
       try {
         const payload = { task: input, completed: false };
-        const { data } = await axios.post(BASE_URL, payload);
+        const { data } = await todoAPI.post("/", payload);
         onAddTodo((prev) => [...prev, data]);
         setInput("");
       } catch (error) {
@@ -28,7 +27,7 @@ export default function TodoForm(props) {
       }
     } else {
       try {
-        await axios.patch(`${BASE_URL}/${editId}`, { task: input });
+        await todoAPI.patch(`/${editId}`, { task: input });
         setEditId(null);
         setInput("");
       } catch (error) {

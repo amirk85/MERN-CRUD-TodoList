@@ -1,7 +1,6 @@
-import axios from "axios";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { BASE_URL } from "../api/api";
+import todoAPI from "../api/api";
 import TodoItem from "./TodoItem";
 
 export default function TodoList(props) {
@@ -9,7 +8,7 @@ export default function TodoList(props) {
 
   async function deleteTodoHandler(id) {
     try {
-      await axios.delete(`${BASE_URL}/${id}`);
+      await todoAPI.delete(`/${id}`);
       getAllTodos();
       document.getElementById("todo_input").focus();
     } catch (error) {
@@ -25,10 +24,9 @@ export default function TodoList(props) {
 
   const renderList =
     todos &&
-    todos.map((todo, index) => (
+    todos.map((todo) => (
       <TodoItem
         key={uuidv4()}
-        index={index}
         todo={todo}
         onDeleteTodo={deleteTodoHandler}
         onEditTodo={editTodoHandler}
